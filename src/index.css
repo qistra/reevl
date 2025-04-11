@@ -1,10 +1,11 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 260 40% 98%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -13,42 +14,26 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 262 83% 66%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 226 57% 18%;
+    --secondary-foreground: 210 40% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 262 83% 96%;
+    --accent-foreground: 262 83% 66%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 262 83% 66%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
@@ -61,8 +46,8 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 262 83% 66%;
+    --primary-foreground: 210 40% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -79,14 +64,6 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -94,8 +71,96 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-purple-500 text-white font-semibold rounded-lg px-6 py-3 
+           hover:bg-purple-600 transition-all 
+           shadow-lg hover:shadow-purple-200/50
+           focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-purple-500 font-semibold rounded-lg px-6 py-3 
+           border border-purple-200 hover:bg-purple-50 transition-all
+           shadow-sm hover:shadow-md
+           focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
+  }
+  
+  .card-feature {
+    @apply bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100;
+  }
+
+  .dot {
+    @apply w-2 h-2 rounded-full bg-gray-300 mx-1 cursor-pointer transition-all;
+  }
+
+  .dot.active {
+    @apply bg-purple-500 w-4;
+  }
+}
+
+.gradient-text {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500;
+}
+
+.feature-icon {
+  @apply w-14 h-14 p-3 rounded-full bg-purple-100 text-purple-500 mb-4;
+}
+
+.testimonial-avatar {
+  @apply w-16 h-16 rounded-full object-cover border-4 border-white shadow-md;
+}
+
+.hero-background {
+  background-image: linear-gradient(to bottom right, rgba(139, 92, 246, 0.05), rgba(96, 165, 250, 0.1));
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem; 
+  padding: 2px;
+  background: linear-gradient(to right, #8b5cf6, #60a5fa);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.sticky-cta {
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
 }
