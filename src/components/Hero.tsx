@@ -4,6 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Mic, ShoppingBag, Clock } from 'lucide-react';
 
 export function Hero() {
+  const handleTryNowClick = () => {
+    // Find the ElevenLabs widget and click its button
+    const widget = document.querySelector('elevenlabs-convai');
+    if (widget) {
+      const widgetButton = widget.shadowRoot?.querySelector('button');
+      if (widgetButton) {
+        widgetButton.click();
+      }
+    }
+  };
+
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 hero-background">
       <div className="container px-4 md:px-6">
@@ -21,7 +32,7 @@ export function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <Button className="btn-primary text-lg h-12">
+            <Button className="btn-primary text-lg h-12" onClick={handleTryNowClick}>
               Try Now Free
             </Button>
             <Button className="btn-secondary text-lg h-12">

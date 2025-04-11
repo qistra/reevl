@@ -7,6 +7,17 @@ import { cn } from '@/lib/utils';
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  const handleTryNowClick = () => {
+    // Find the ElevenLabs widget and click its button
+    const widget = document.querySelector('elevenlabs-convai');
+    if (widget) {
+      const widgetButton = widget.shadowRoot?.querySelector('button');
+      if (widgetButton) {
+        widgetButton.click();
+      }
+    }
+  };
+
   return (
     <header className="w-full py-4 px-4 md:px-6 sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto flex items-center justify-between">
@@ -29,7 +40,7 @@ export function Header() {
           <a href="#features" className="text-sm font-medium hover:text-purple-600 transition-colors">Features</a>
           <a href="#demo" className="text-sm font-medium hover:text-purple-600 transition-colors">Demo</a>
           <a href="#testimonials" className="text-sm font-medium hover:text-purple-600 transition-colors">Testimonials</a>
-          <Button className="btn-primary">Try Now</Button>
+          <Button className="btn-primary" onClick={handleTryNowClick}>Try Now</Button>
         </nav>
       </div>
       
@@ -60,7 +71,13 @@ export function Header() {
           >
             Testimonials
           </a>
-          <Button className="btn-primary w-full" onClick={() => setIsMenuOpen(false)}>
+          <Button 
+            className="btn-primary w-full" 
+            onClick={() => {
+              setIsMenuOpen(false);
+              handleTryNowClick();
+            }}
+          >
             Try Now
           </Button>
         </div>
